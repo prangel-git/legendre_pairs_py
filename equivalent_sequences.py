@@ -1,4 +1,4 @@
-from vector_utils import circular_correlation
+from vector_utils import circular_correlation, rotate_left, reverse
 from sequence_generation import seq_binary
 
 
@@ -15,21 +15,20 @@ def find_sequences_with_same_correlation(n):
     return correlation_to_sequences
 
 
+def find_rotation_and_reversal_orbit(sequence: list):
+    orbit = set()
+    modified_sequence = sequence.copy()
+    for k in range(len(sequence)):
+        modified_sequence = rotate_left(modified_sequence)
+        orbit.add(tuple(modified_sequence))
+        orbit.add(tuple(reverse(modified_sequence)))
+
+    return orbit
+
+
 def main():  # pragma: no cover
-    corr_to_seqs = find_sequences_with_same_correlation(11)
-
-    total_sequences = 0
-    for corr in corr_to_seqs.keys():
-        num_sequences = len(corr_to_seqs[corr])
-        total_sequences += num_sequences
-        print(f"sequence {corr} equivalences {num_sequences}")
-        """
-        for seq in corr_to_seqs[corr]:
-            print(seq)
-            """
-
-    print(f"Total equivalence classes {len(corr_to_seqs)}")
-    print(f"Total sequences {total_sequences}")
+    orbit = find_rotation_and_reversal_orbit([1, 2, 3])
+    print(orbit)
 
 
 if __name__ == "__main__":  # pragma: no cover

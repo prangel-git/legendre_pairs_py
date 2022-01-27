@@ -9,3 +9,11 @@ def test_find_sequences_with_same_correlation():
     for correlation, sequences in correlation_to_sequences.items():
         for sequence in sequences:
             assert tuple(circular_correlation(sequence, sequence)) == correlation
+
+
+def test_find_orbit_under_rotation_and_reversal():
+    sequence = [1, 2, 3]
+    orbit_of_sequence = set(
+        [(1, 2, 3), (3, 1, 2), (2, 3, 1), (3, 2, 1), (1, 3, 2), (2, 1, 3)]
+    )
+    assert find_rotation_and_reversal_orbit(sequence) == orbit_of_sequence
