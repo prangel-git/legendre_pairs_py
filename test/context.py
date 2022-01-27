@@ -9,3 +9,4 @@ import legendre_pairs
 import dft_utils
 import matrix_utils
 import sequence_generation
+import equivalent_sequences

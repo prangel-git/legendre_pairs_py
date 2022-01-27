@@ -25,12 +25,3 @@ def test_not_are_compatible_psd():
     a = [1, 1, 1, -1, 1, -1, -1]
     b = [0, 1, 0, 1, 0, 1, 1]
     assert not are_compatible_psd(a, b)
-
-
-def test_find_sequences_with_same_correlation():
-    n = 11
-    correlation_to_sequences = find_sequences_with_same_correlation(n)
-
-    for correlation, sequences in correlation_to_sequences.items():
-        for sequence in sequences:
-            assert tuple(circular_correlation(sequence, sequence)) == correlation
