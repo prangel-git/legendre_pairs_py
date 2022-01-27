@@ -42,6 +42,18 @@ def test_prime_generator():
     assert generated_primes == primes_smaller_than_100
 
 
+def test_kth_prime():
+    k = 100
+    p_k = 541
+
+    primes_generator = primes()
+
+    for i in range(k):
+        generated_p_k = next(primes_generator)
+
+    assert generated_p_k == p_k
+
+
 def test_cycles_generator():
     numbers = [1, 2, 1]
     expected_cycle = [1, 2, 1, 1, 2, 1]
@@ -54,7 +66,7 @@ def test_cycles_generator():
     assert generated_cycle == expected_cycle
 
 
-def test_gcd():
+def test_gcd_extended():
     a = 15
     b = 35
     g, x, y = gcd_extended(a, b)
@@ -66,6 +78,18 @@ def test_gcd():
     assert expected_gcd == g
     assert expected_x == x
     assert expected_y == y
+
+
+def test_gcd():
+    assert gcd(15, 35) == 5
+
+
+def test_order_of_returns_zero():
+    assert order_of(15, 5) == 0
+
+
+def test_order_of():
+    assert order_of(2, 7) == 3
 
 
 @pytest.mark.parametrize(
@@ -99,6 +123,21 @@ def test_jacobi(a, n, expected_answer):
     assert answer == expected_answer
 
 
+def test_jacobi_fails_on_even_n():
+    with pytest.raises(ValueError):
+        jacobi(3, 4)
+
+
+def test_jacobi_fails_on_n_equal_zero():
+    with pytest.raises(ValueError):
+        jacobi(3, 0)
+
+
+def test_jacobi_fails_on_negative_n():
+    with pytest.raises(ValueError):
+        jacobi(3, -5)
+
+
 @pytest.mark.parametrize(
     "input, expected_answer", [(1, 2), (2, 6), (3, 30), (4, 210), (5, 2310)]
 )
@@ -116,7 +155,8 @@ def test_relative_primes(input, expected_answer):
 
 
 @pytest.mark.parametrize(
-    "input, expected_answer", [(6, {2: 1, 3: 1}), (30, {2: 1, 3: 1, 5: 1}), (8, {2: 3})]
+    "input, expected_answer",
+    [(6, {2: 1, 3: 1}), (30, {2: 1, 3: 1, 5: 1}), (8, {2: 3}), (1, dict())],
 )
 def test_prime_factorization(input, expected_answer):
     answer = prime_factorization(input)

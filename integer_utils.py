@@ -68,17 +68,17 @@ def relative_primes(n: int):
     return [m for m in range(1, n) if gcd(n, m) == 1]
 
 
-def order_of(m: int, n: int) -> int:
+def order_of(number: int, field_size: int) -> int:
 
-    if gcd(m, n) != 1:
+    if gcd(number, field_size) != 1:
         return 0
 
     order = 1
-    current = m % n
+    current = number % field_size
     while current != 1:
         order += 1
-        current *= m
-        current %= n
+        current *= number
+        current %= field_size
 
     return order
 
