@@ -1,3 +1,6 @@
+from vector_utils import reverse, rotate_left
+
+
 def seq_binary(n):
     if n == 1:
         return [[0], [1]]
@@ -21,6 +24,22 @@ def seq_n_choose_k(n, k):
         ]
     else:
         return []
+
+
+def seq_binary_module_rotation_and_reversal(n):
+
+    observed_sequences = set()
+    for seq in seq_binary(n):
+        if tuple(seq) not in observed_sequences:
+            seen_seq = seq.copy()
+            for k in range(len(seen_seq)):
+                seen_seq = rotate_left(seen_seq)
+                observed_sequences.add(tuple(seen_seq))
+                observed_sequences.add(tuple(reverse(seen_seq)))
+
+            yield seq
+
+    return
 
 
 def main():  # pragma: no cover
