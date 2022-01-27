@@ -131,9 +131,9 @@ def jacobi(a: int, n: int):
         return 0
 
 
-def main():
+def main():  # pragma: no cover
     print("Entry point for playing around")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     main()

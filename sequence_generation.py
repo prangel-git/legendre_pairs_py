@@ -23,11 +23,9 @@ def seq_n_choose_k(n, k):
         return []
 
 
-def main():
-    n = 4
-    k = 2
-    print(seq_n_choose_k(n, k))
+def main():  # pragma: no cover
+    print("Entry point for playing around")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     main()

@@ -36,7 +36,7 @@ def psd(x):
     ]
 
 
-def main():
+def main():  # pragma: no cover
     x = [1] * 5
 
     dft_matrix_5 = dft_matrix(5)
@@ -45,5 +45,5 @@ def main():
         print(row)
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     main()

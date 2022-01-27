@@ -18,9 +18,9 @@ def are_compatible_psd(a, b):
     return all([are_almost_equal(result[1], result[i]) for i in range(1, len(result))])
 
 
-def main():
-    print("entry point for playing around")
+def main():  # pragma: no cover
+    print("Entry point for playing around")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     main()

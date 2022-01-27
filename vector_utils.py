@@ -57,9 +57,9 @@ def distance_l2(x, y):
     return sum(pointwise_operation(norm_square, x, y))
 
 
-def main():
+def main():  # pragma: no cover
     print("Entry point for playing around")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     main()

@@ -9,6 +9,11 @@ def test_seq_binary():
     assert generated == expected
 
 
+def test_seq_binary_invalid():
+    assert seq_binary(0) == []
+    assert seq_binary(-1) == []
+
+
 def test_seq_n_choose_k():
     expected = set(
         [
@@ -22,3 +27,7 @@ def test_seq_n_choose_k():
     )
     generated = set([tuple(l) for l in seq_n_choose_k(4, 2)])
     assert generated == expected
+
+
+def test_seq_n_choose_k_invalid():
+    assert seq_n_choose_k(5, 6) == []

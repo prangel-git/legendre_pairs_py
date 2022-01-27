@@ -11,3 +11,11 @@ def matrix_mul(a, b):
 
 def matrix_times_vector(a, x):
     return [dot(a_i, x) for a_i in a]
+
+
+def main():  # pragma: no cover
+    print("Entry point for playing around")
+
+
+if __name__ == "__main__":  # pragma: no cover
+    main()

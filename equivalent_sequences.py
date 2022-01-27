@@ -15,7 +15,7 @@ def find_sequences_with_same_correlation(n):
     return correlation_to_sequences
 
 
-def main():
+def main():  # pragma: no cover
     corr_to_seqs = find_sequences_with_same_correlation(11)
 
     total_sequences = 0
@@ -32,5 +32,5 @@ def main():
     print(f"Total sequences {total_sequences}")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     main()

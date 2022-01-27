@@ -118,7 +118,7 @@ def test_relative_primes(input, expected_answer):
 @pytest.mark.parametrize(
     "input, expected_answer", [(6, {2: 1, 3: 1}), (30, {2: 1, 3: 1, 5: 1}), (8, {2: 3})]
 )
-def test_relative_primes(input, expected_answer):
+def test_prime_factorization(input, expected_answer):
     answer = prime_factorization(input)
     assert answer == expected_answer
 
