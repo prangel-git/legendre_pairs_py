@@ -1,6 +1,6 @@
 ## Installation
 
-```
+```console
 # Clone repository
 git clone https://github.com/prangel-git/legendre_pairs_py.git
 cd legendre_pairs_py/ 
