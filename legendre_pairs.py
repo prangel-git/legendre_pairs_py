@@ -21,7 +21,7 @@ def are_compatible_psd(a, b):
 
 def find_sequences_with_same_correlation(n):
     correlation_to_sequences = dict()
-    for sequence in seq_n_choose_k(n, n // 2):
+    for sequence in seq_binary(n):
         correlation_a = tuple(circular_correlation(sequence, sequence))
         if correlation_a not in correlation_to_sequences.keys():
             correlation_to_sequences[correlation_a] = [sequence]
