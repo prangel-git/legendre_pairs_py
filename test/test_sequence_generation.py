@@ -11,8 +11,8 @@ def test_seq_binary():
 
 
 def test_seq_binary_invalid():
-    assert seq_binary(0) == []
-    assert seq_binary(-1) == []
+    assert [seq for seq in seq_binary(0)] == []
+    assert [seq for seq in seq_binary(-1)] == []
 
 
 def test_seq_n_choose_k():
@@ -31,7 +31,7 @@ def test_seq_n_choose_k():
 
 
 def test_seq_n_choose_k_invalid():
-    assert seq_n_choose_k(5, 6) == []
+    assert [seq for seq in seq_n_choose_k(5, 6)] == []
 
 
 def test_seq_binary_module_rotations_and_reversal():

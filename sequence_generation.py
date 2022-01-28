@@ -3,12 +3,14 @@ from vector_utils import reverse, rotate_left
 
 def seq_binary(n):
     if n == 1:
-        return [[0], [1]]
+        yield [0]
+        yield [1]
     elif n > 1:
-        previous_list = seq_binary(n - 1)
-        return [[0] + l for l in previous_list] + [[1] + l for l in previous_list]
-    else:
-        return []
+        for l in seq_binary(n - 1):
+            yield [0] + l
+            yield [1] + l
+
+    return
 
 
 def seq_n_choose_k(n, k):
