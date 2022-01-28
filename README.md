@@ -1,23 +1,34 @@
-## Installation
+# Installation
+
+1. Clone repository
 
 ```console
-# Clone repository
 git clone https://github.com/prangel-git/legendre_pairs_py.git
 cd legendre_pairs_py/ 
+```
 
-# Create and activate a new virtual environment (you need python 3)
+2. Create and activate a new virtual environment (you need python 3)
+
+```console
 python3 -m venv .venv
 source .venv/bin/activate
+```
 
-# Install required packages from pip
+3. Install required packages from pip
+
+```console
 python -m pip install -r requirements.txt
+```
 
-# Check that all the tests are working
+4. Run tests
+
+```console
 pytest
+```
 
-# Run test coverage
+5. Run test coverage
+
+```console
 coverage run -m pytest
-
-# See coverage report
 coverage report -m 
 ```
