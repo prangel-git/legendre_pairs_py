@@ -15,17 +15,17 @@ def seq_binary(n):
 
 def seq_n_choose_k(n, k):
     if k == 0:
-        return [[0] * n]
+        yield [0] * n
     elif n == k:
-        return [[1] * n]
+        yield [1] * n
     elif n > k:
-        previous_n_current_k = seq_n_choose_k(n - 1, k)
-        previous_n_previous_k = seq_n_choose_k(n - 1, k - 1)
-        return [[0] + l for l in previous_n_current_k] + [
-            [1] + l for l in previous_n_previous_k
-        ]
-    else:
-        return []
+        for previous_n_current_k in seq_n_choose_k(n - 1, k):
+            yield [0] + previous_n_current_k
+
+        for previous_n_previous_k in seq_n_choose_k(n - 1, k - 1):
+            yield [1] + previous_n_previous_k
+
+    return
 
 
 def seq_binary_module_rotation_and_reversal(n):
