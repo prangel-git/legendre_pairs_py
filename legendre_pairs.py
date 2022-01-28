@@ -24,22 +24,6 @@ def are_compatible_psd(a, b):
 
 
 def brute_force_search_of_compatible_autocorrelations(n):
-    sequences_to_test = [
-        seq for seq in seq_module_rotation_and_reversal(seq_n_choose_k(n, n // 2))
-    ]
-
-    compatible_sequences = []
-    for seq_a in sequences_to_test:
-        for seq_b in sequences_to_test:
-            if are_compatible_autocorrelation(seq_a, seq_b):
-                compatible_sequence = (seq_a, seq_b)
-                compatible_sequences.append(compatible_sequence)
-
-    return compatible_sequences
-
-
-"""
-def brute_force_search_of_compatible_autocorrelations_1(n):
 
     correlation_to_sequence = {
         tuple(circular_correlation(seq, seq)): seq
@@ -47,7 +31,7 @@ def brute_force_search_of_compatible_autocorrelations_1(n):
     }
 
     compatible_sequences = []
-    expected_addition = [n - 1] + [(n - 1) // 2] * (n - 1)
+    expected_addition = [n - 1] + [(n - 1) // 2 - 1] * (n - 1)
     for correlation in correlation_to_sequence.keys():
         expected_correlation = tuple(
             pointwise_operation(lambda x, y: x - y, expected_addition, correlation)
@@ -60,12 +44,11 @@ def brute_force_search_of_compatible_autocorrelations_1(n):
             compatible_sequences.append(compatible_sequence)
 
     return compatible_sequences
-"""
 
 
 def main():  # pragma: no cover
     print("Entry point for playing around")
-    n = 11
+    n = 21
     compatible_sequences = brute_force_search_of_compatible_autocorrelations(n)
     for a, b in compatible_sequences:
         correlation_a = circular_correlation(a, a)
