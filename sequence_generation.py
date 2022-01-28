@@ -28,10 +28,10 @@ def seq_n_choose_k(n, k):
     return
 
 
-def seq_binary_module_rotation_and_reversal(n):
+def seq_module_rotation_and_reversal(sequences):
 
     observed_sequences = set()
-    for seq in seq_binary(n):
+    for seq in sequences:
         if tuple(seq) not in observed_sequences:
             seen_seq = seq.copy()
             for k in range(len(seen_seq)):
