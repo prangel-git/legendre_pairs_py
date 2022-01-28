@@ -14,4 +14,10 @@ python -m pip install -r requirements.txt
 
 # Check that all the tests are working
 pytest
+
+# Run test coverage
+coverage run -m pytest
+
+# See coverage report
+coverage report -m 
 ```
