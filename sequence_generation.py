@@ -28,7 +28,7 @@ def seq_n_choose_k(n, k):
     return
 
 
-def seq_module_rotation_and_reversal(sequences):
+def seq_bracelets(sequences):
 
     observed_sequences = set()
     for seq in sequences:

@@ -36,7 +36,7 @@ def test_seq_n_choose_k_invalid():
 
 def test_seq_module_rotations_and_reversal():
     n = 11
-    sequences = [tuple(seq) for seq in seq_module_rotation_and_reversal(seq_binary(n))]
+    sequences = [tuple(seq) for seq in seq_bracelets(seq_binary(n))]
     seq_to_orbit = {
         seq: find_rotation_and_reversal_orbit(list(seq)) for seq in sequences
     }
