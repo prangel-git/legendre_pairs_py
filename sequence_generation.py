@@ -72,14 +72,16 @@ def seq_filtering_by_psd(sequences, gamma):
 def main():  # pragma: no cover
     print("Entry point for playing around")
 
-    n = 11
-    gamma = 6
-    filtered_sequences = seq_filtering_by_psd(
-        seq_bracelets(seq_n_choose_k(n, (n + 1) // 2)), gamma
-    )
+    n = 27
+    gamma = (n + 1) // 2
+    kappa = (n - 1) // 2
 
-    for seq in filtered_sequences:
-        print(f"seq {seq} psd {psd(seq)}")
+    bracelets = [seq for seq in seq_bracelets(seq_n_choose_k(n, kappa))]
+    filtered_bracelets = [seq for seq in seq_filtering_by_psd(bracelets, gamma)]
+
+    print(
+        f"number of bracelents {len(bracelets)} vs number of filtered {len(filtered_bracelets)}"
+    )
 
 
 if __name__ == "__main__":  # pragma: no cover
@@ -97,4 +99,10 @@ seq [0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1] psd [36.0, 2.3907355206615746, 4.967136742
 seq [0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1] psd [36.0, 1.0328632577910677, 0.2501840267672326, 4.115459702550342, 5.992228533552933, 3.6092644793384236, 3.6092644793384236, 5.992228533552933, 4.115459702550344, 0.25018402676723284, 1.0328632577910684]
 seq [0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1] psd [36.0, 0.25018402676723245, 5.992228533552932, 3.6092644793384263, 4.115459702550344, 1.0328632577910666, 1.0328632577910675, 4.115459702550344, 3.6092644793384254, 5.992228533552936, 0.25018402676723267]
 seq [0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1] psd [36.0, 0.007771466447067577, 1.884540297449657, 4.967136742208933, 2.3907355206615755, 5.7498159732327725, 5.749815973232765, 2.390735520661576, 4.967136742208934, 1.8845402974496572, 0.007771466447067624]
+"""
+
+"""
+21 -> 8524 vs number of filtered 610
+25 -> 104468 vs number of filtered 3780
+27 -> 372308 vs number of filtered 10809
 """
