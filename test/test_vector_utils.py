@@ -8,11 +8,11 @@ def test_dot():
 
 
 def test_rotate_right():
-    assert rotate_right([1, 2, 3]) == [2, 3, 1]
+    assert rotate_left([1, 2, 3]) == [2, 3, 1]
 
 
 def test_rotate_left():
-    assert rotate_left([1, 2, 3]) == [3, 1, 2]
+    assert rotate_right([1, 2, 3]) == [3, 1, 2]
 
 
 def test_rotate_n():

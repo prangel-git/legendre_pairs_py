@@ -1,4 +1,4 @@
-from vector_utils import reverse, rotate_left
+from vector_utils import reverse, rotate_right
 
 
 def seq_binary(n):
@@ -35,7 +35,7 @@ def seq_bracelets(sequences):
         if tuple(seq) not in observed_sequences:
             seen_seq = seq.copy()
             for k in range(len(seen_seq)):
-                seen_seq = rotate_left(seen_seq)
+                seen_seq = rotate_right(seen_seq)
                 observed_sequences.add(tuple(seen_seq))
                 observed_sequences.add(tuple(reverse(seen_seq)))
 

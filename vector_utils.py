@@ -2,11 +2,11 @@ def dot(x, y):
     return sum([x_i * y_i for x_i, y_i in zip(x, y)])
 
 
-def rotate_right(x):
+def rotate_left(x):
     return x[1:] + [x[0]]
 
 
-def rotate_left(x):
+def rotate_right(x):
     return [x[-1]] + x[:-1]
 
 

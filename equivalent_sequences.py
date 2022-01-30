@@ -1,4 +1,4 @@
-from vector_utils import circular_correlation, rotate_left, reverse
+from vector_utils import circular_correlation, rotate_right, reverse
 from sequence_generation import seq_binary
 
 
@@ -19,7 +19,7 @@ def find_rotation_and_reversal_orbit(sequence: list):
     orbit = set()
     modified_sequence = sequence.copy()
     for k in range(len(sequence)):
-        modified_sequence = rotate_left(modified_sequence)
+        modified_sequence = rotate_right(modified_sequence)
         orbit.add(tuple(modified_sequence))
         orbit.add(tuple(reverse(modified_sequence)))
 
