@@ -56,7 +56,11 @@ def main():  # pragma: no cover
         correlation_sum = pointwise_operation(
             lambda x, y: x + y, correlation_a, correlation_b
         )
-        print(f"sequence a {a}, sequence b {b}, correlation sum {correlation_sum}")
+        psd_a = psd(a)
+        psd_b = psd(b)
+        psd_sum = pointwise_operation(lambda x, y: round(x + y), psd_a, psd_b)
+
+        print(f"sequence a {a}, sequence b {b}, psd sum {psd_sum}")
 
 
 if __name__ == "__main__":  # pragma: no cover

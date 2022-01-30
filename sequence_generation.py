@@ -1,4 +1,5 @@
 from vector_utils import reverse, rotate_right
+from dft_utils import psd_k, psd
 
 
 def seq_binary(n):
@@ -39,6 +40,21 @@ def seq_bracelets(sequences):
                 observed_sequences.add(tuple(seen_seq))
                 observed_sequences.add(tuple(reverse(seen_seq)))
 
+            yield seq
+
+    return
+
+
+def seq_filtering_by_psd(sequences, gamma):
+    eps = 1e-10
+    # filter(lambda x: all([psd_k(x, k) - eps > gamma for k in range(1, len(x))]), sequences)
+    for seq in sequences:
+        is_psd_bounded_by_gamma = True
+        for k in range(1, len(seq)):
+            if psd_k(seq, k) - eps > gamma:
+                is_psd_bounded_by_gamma = False
+                break
+        if is_psd_bounded_by_gamma:
             yield seq
 
     return

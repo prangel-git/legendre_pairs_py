@@ -1,4 +1,5 @@
 from context import sequence_generation
+from dft_utils import psd
 from equivalent_sequences import find_rotation_and_reversal_orbit
 
 from sequence_generation import *
@@ -45,3 +46,16 @@ def test_seq_module_rotations_and_reversal():
         for seq_b in sequences:
             if seq_a != seq_b:
                 assert seq_to_orbit[seq_a] != seq_to_orbit[seq_b]
+
+
+def test_seq_filtering_by_psd():
+    n = 11
+    gamma = 6
+    filtered_sequences = seq_filtering_by_psd(
+        seq_bracelets(seq_n_choose_k(n, (n + 1) // 2)), gamma
+    )
+
+    assert filtered_sequences
+
+    for seq in filtered_sequences:
+        assert round(max(psd(seq)[1:])) <= gamma

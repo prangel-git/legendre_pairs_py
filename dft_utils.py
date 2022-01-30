@@ -16,7 +16,7 @@ def dft_k(x, k):
 
 def psd_k(x, k):
     x_hat_k = dft_k(x, k)
-    return x_hat_k.conjugate() * x_hat_k
+    return x_hat_k.real * x_hat_k.real + x_hat_k.imag * x_hat_k.imag
 
 
 def dft_matrix(n):
