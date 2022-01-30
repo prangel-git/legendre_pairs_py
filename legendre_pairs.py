@@ -25,14 +25,14 @@ def are_compatible_psd(a, b):
 
 def brute_force_search_of_compatible_autocorrelations(n):
 
-    correlation_to_sequence = {
-        tuple(circular_correlation(seq, seq)): seq
-        for seq in seq_bracelets(seq_n_choose_k(n, n // 2))
-    }
-
+    correlation_to_sequence = dict()
     compatible_sequences = []
     expected_addition = [n - 1] + [(n - 1) // 2 - 1] * (n - 1)
-    for correlation in correlation_to_sequence.keys():
+    for sequence in seq_bracelets(seq_n_choose_k(n, n // 2)):
+
+        correlation = tuple(circular_correlation(sequence, sequence))
+        correlation_to_sequence[correlation] = sequence
+
         expected_correlation = tuple(
             pointwise_operation(lambda x, y: x - y, expected_addition, correlation)
         )
