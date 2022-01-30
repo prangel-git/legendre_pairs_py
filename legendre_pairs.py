@@ -2,6 +2,7 @@ from dft_utils import psd
 from sequence_generation import (
     seq_bracelets,
     seq_binary,
+    seq_filtering_by_psd,
     seq_n_choose_k,
 )
 
@@ -28,7 +29,10 @@ def brute_force_search_of_compatible_autocorrelations(n):
     correlation_to_sequence = dict()
     compatible_sequences = []
     expected_addition = [n - 1] + [(n - 1) // 2 - 1] * (n - 1)
-    for sequence in seq_bracelets(seq_n_choose_k(n, n // 2)):
+    gamma = (n + 1) // 2
+    for sequence in seq_filtering_by_psd(
+        seq_bracelets(seq_n_choose_k(n, n // 2)), gamma
+    ):
 
         correlation = tuple(circular_correlation(sequence, sequence))
         correlation_to_sequence[correlation] = sequence

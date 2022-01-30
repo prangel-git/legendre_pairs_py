@@ -45,14 +45,15 @@ def seq_bracelets(sequences):
     return
 
 
+"""
 def seq_filtering_by_psd(sequences, gamma):
     eps = 1e-10
     return filter(
         lambda x: all([psd_k(x, k) + eps <= gamma for k in range(1, len(x))]), sequences
     )
-
-
 """
+
+
 def seq_filtering_by_psd(sequences, gamma):
     eps = 1e-10
     # filter(lambda x: all([psd_k(x, k) - eps > gamma for k in range(1, len(x))]), sequences)
@@ -66,7 +67,6 @@ def seq_filtering_by_psd(sequences, gamma):
             yield seq
 
     return
-"""
 
 
 def main():  # pragma: no cover
