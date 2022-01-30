@@ -55,7 +55,10 @@ def test_seq_filtering_by_psd():
         seq_bracelets(seq_n_choose_k(n, (n + 1) // 2)), gamma
     )
 
-    assert filtered_sequences
+    is_not_empty_iterator = False
 
     for seq in filtered_sequences:
+        is_not_empty_iterator = True
         assert round(max(psd(seq)[1:])) <= gamma
+
+    assert is_not_empty_iterator
