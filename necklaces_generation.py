@@ -22,10 +22,10 @@ def successor(sequence):
         return None
 
     mod_sequence = sequence[:largest_index_equal_to_zero] + [1]
-    i = len_sequence // (largest_index_equal_to_zero + 1)
+    t = len_sequence // (largest_index_equal_to_zero + 1)
     j = len_sequence % (largest_index_equal_to_zero + 1)
 
-    return repeat_ith_times_and_fill_jth_values(mod_sequence, i, j)
+    return repeat_tth_times_and_fill_jth_values(mod_sequence, t, j)
 
 
 def find_largest_index_equal_to_zero(sequence):
@@ -36,8 +36,8 @@ def find_largest_index_equal_to_zero(sequence):
     return None
 
 
-def repeat_ith_times_and_fill_jth_values(sequence, k, j):
-    return sequence * k + sequence[:j]
+def repeat_tth_times_and_fill_jth_values(sequence, t, j):
+    return sequence * t + sequence[:j]
 
 
 def main():  # pragma: no cover
