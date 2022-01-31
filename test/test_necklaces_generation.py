@@ -47,3 +47,26 @@ def test_successor(seq, seq_successor):
 )
 def test_find_largest_index_equal_to_zero(sequence, index):
     assert find_largest_index_equal_to_zero(sequence) == index
+
+
+def test_fkm_algorithm():
+    start = [0] * 6
+    end = [1] * 6
+    generated_necklaces = [seq for seq in fkm_algorithm(start, end)]
+    necklaces = [
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 1],
+        [0, 0, 0, 0, 1, 1],
+        [0, 0, 0, 1, 0, 1],
+        [0, 0, 0, 1, 1, 1],
+        [0, 0, 1, 0, 0, 1],
+        [0, 0, 1, 0, 1, 1],
+        [0, 0, 1, 1, 0, 1],
+        [0, 0, 1, 1, 1, 1],
+        [0, 1, 0, 1, 0, 1],
+        [0, 1, 0, 1, 1, 1],
+        [0, 1, 1, 0, 1, 1],
+        [0, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1],
+    ]
+    assert generated_necklaces == necklaces

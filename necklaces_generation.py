@@ -28,6 +28,32 @@ def successor(sequence):
     return repeat_tth_times_and_fill_jth_values(mod_sequence, t, j)
 
 
+def fkm_algorithm(start, end):
+
+    if len(start) != len(end):
+        return
+
+    l = len(start)
+
+    start_necklace = find_necklace(start)
+    end_necklace = find_necklace(end)
+
+    current = min(start_necklace, end_necklace)
+    real_end = max(start_necklace, end_necklace)
+
+    yield current
+
+    while current < real_end:
+        i = find_largest_index_equal_to_zero(current) + 1
+        t = l // i
+        j = l % i
+
+        mod_current = current[: i - 1] + [1]
+        current = repeat_tth_times_and_fill_jth_values(mod_current, t, j)
+        if j == 0:
+            yield current
+
+
 def find_largest_index_equal_to_zero(sequence):
     for k in range(len(sequence) - 1, -1, -1):
         if sequence[k] == 0:
@@ -42,11 +68,9 @@ def repeat_tth_times_and_fill_jth_values(sequence, t, j):
 
 def main():  # pragma: no cover
     print("Entry point for playing around")
-    sequence = [0] * 6
-    while sequence is not None:
-        print(sequence)
-        sequence = successor(sequence)
-    print(sequence)
+    sequences = [seq for seq in fkm_algorithm([0] * 6, [1] * 6)]
+    for seq in sequences:
+        print(seq)
 
 
 if __name__ == "__main__":  # pragma: no cover
