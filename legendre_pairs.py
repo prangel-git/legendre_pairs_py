@@ -1,4 +1,5 @@
 from dft_utils import psd
+from necklaces_generation import seq_necklaces_of_half_density
 from sequence_generation import (
     seq_bracelets,
     seq_binary,
@@ -30,11 +31,13 @@ def brute_force_search_of_compatible_autocorrelations(n):
     compatible_sequences = []
     expected_addition = [n - 1] + [(n - 1) // 2 - 1] * (n - 1)
     gamma = (n + 1) // 2
-    for sequence in seq_filtering_by_psd(
-        seq_bracelets(seq_n_choose_k(n, n // 2)), gamma
-    ):
+    for sequence in seq_filtering_by_psd(seq_necklaces_of_half_density(n), gamma):
 
         correlation = tuple(circular_correlation(sequence, sequence))
+
+        if correlation in correlation_to_sequence.keys():
+            continue
+
         correlation_to_sequence[correlation] = sequence
 
         expected_correlation = tuple(
