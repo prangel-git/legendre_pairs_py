@@ -8,3 +8,7 @@ def find_necklace(sequence):
         if potential_necklace > rotated_sequence:
             potential_necklace = rotated_sequence
     return potential_necklace
+
+
+def equal_necklaces(sequence_a, sequence_b):
+    return find_necklace(sequence_a) == find_necklace(sequence_b)
