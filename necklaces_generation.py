@@ -31,7 +31,7 @@ def successor(sequence):
 def fkm_algorithm(start, end):
 
     if len(start) != len(end):
-        return
+        return None
 
     l = len(start)
 
@@ -54,6 +54,25 @@ def fkm_algorithm(start, end):
             yield current
 
 
+def seq_necklaces_of_half_density(length):
+    density = length // 2
+    current = [0] * (length - density) + [1] * density
+    last_necklace = [(i + 1) % 2 for i in range(length)]
+    last_necklace[0] = 0
+
+    yield current
+    while current < last_necklace:
+        i = find_largest_index_equal_to_zero(current) + 1
+        t = length // i
+        j = length % i
+
+        mod_current = current[: i - 1] + [1]
+        current = repeat_tth_times_and_fill_jth_values(mod_current, t, j)
+        if j == 0 and sum(current) == density:
+            yield current
+    return
+
+
 def find_largest_index_equal_to_zero(sequence):
     for k in range(len(sequence) - 1, -1, -1):
         if sequence[k] == 0:
@@ -68,9 +87,10 @@ def repeat_tth_times_and_fill_jth_values(sequence, t, j):
 
 def main():  # pragma: no cover
     print("Entry point for playing around")
-    sequences = [seq for seq in fkm_algorithm([0] * 6, [1] * 6)]
+    n = 7
+    sequences = [seq for seq in fkm_algorithm([0] * n, [1] * n)]
     for seq in sequences:
-        print(seq)
+        print(f"seq {seq} density {sum(seq)}")
 
 
 if __name__ == "__main__":  # pragma: no cover

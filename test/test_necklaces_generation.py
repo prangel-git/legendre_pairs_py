@@ -70,3 +70,20 @@ def test_fkm_algorithm():
         [1, 1, 1, 1, 1, 1],
     ]
     assert generated_necklaces == necklaces
+
+
+def test_fkm_algorithm_returns_none():
+    assert [seq for seq in fkm_algorithm([0, 0, 1], [0, 0])] == []
+
+
+def test_seq_necklaces_of_half_density():
+    expected_necklaces = [
+        [0, 0, 0, 0, 1, 1, 1],
+        [0, 0, 0, 1, 0, 1, 1],
+        [0, 0, 0, 1, 1, 0, 1],
+        [0, 0, 1, 0, 0, 1, 1],
+        [0, 0, 1, 0, 1, 0, 1],
+    ]
+
+    necklaces = [seq for seq in seq_necklaces_of_half_density(7)]
+    assert expected_necklaces == necklaces
