@@ -29,6 +29,7 @@ def test_equal_necklaces_false():
         ([0, 0, 0, 1, 0, 1], [0, 0, 0, 1, 1, 0]),
         ([0, 0, 0, 1, 1, 0], [0, 0, 0, 1, 1, 1]),
         ([0, 0, 0, 1, 1, 1], [0, 0, 1, 0, 0, 1]),
+        ([1, 1, 1, 1, 1, 1], None),
     ],
 )
 def test_successor(seq, seq_successor):

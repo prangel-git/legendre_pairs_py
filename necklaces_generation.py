@@ -39,6 +39,11 @@ def find_largest_index_equal_to_zero(sequence):
 
 def main():  # pragma: no cover
     print("Entry point for playing around")
+    sequence = [0] * 6
+    while sequence is not None:
+        print(sequence)
+        sequence = successor(sequence)
+    print(sequence)
 
 
 if __name__ == "__main__":  # pragma: no cover
