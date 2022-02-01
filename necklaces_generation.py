@@ -92,15 +92,17 @@ def find_bracelet(sequence):
         rotated_sequence = rotate_n(sequence, n)
         if rotated_sequence < potential_bracelet:
             potential_bracelet = rotated_sequence
-        if reverse(rotated_sequence) < potential_bracelet:
-            potential_bracelet = reverse(rotated_sequence)
+        reverse_rotated_sequence = reverse(rotated_sequence)
+        if reverse_rotated_sequence < potential_bracelet:
+            potential_bracelet = reverse_rotated_sequence
     return potential_bracelet
 
 
 def find_bracelet_from_necklace(sequence):
     potential_bracelet = sequence.copy()
+    reverse_sequence = reverse(sequence)
     for n in range(len(sequence)):
-        reverse_rotated_sequence = reverse(rotate_n(sequence, n))
+        reverse_rotated_sequence = rotate_n(reverse_sequence, n)
         if reverse_rotated_sequence < potential_bracelet:
             potential_bracelet = reverse_rotated_sequence
     return potential_bracelet

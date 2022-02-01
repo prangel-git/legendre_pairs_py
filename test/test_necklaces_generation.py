@@ -87,3 +87,25 @@ def test_seq_necklaces_of_half_density():
 
     necklaces = [seq for seq in seq_necklaces_of_half_density(7)]
     assert expected_necklaces == necklaces
+
+
+def test_find_bracelet():
+    expected_bracelet = [0, 0, 1, 0, 1, 1, 1]
+    assert find_bracelet([1, 1, 0, 1, 0, 0, 1]) == expected_bracelet
+
+
+def test_find_bracelet_from_necklace():
+    expected_bracelet = [0, 0, 1, 0, 1, 1, 1]
+    assert find_bracelet_from_necklace([0, 0, 1, 1, 1, 0, 1]) == expected_bracelet
+
+
+def test_seq_bracelets_of_half_density():
+    expected_necklaces = [
+        [0, 0, 0, 0, 1, 1, 1],
+        [0, 0, 0, 1, 0, 1, 1],
+        [0, 0, 1, 0, 0, 1, 1],
+        [0, 0, 1, 0, 1, 0, 1],
+    ]
+
+    bracelets = [seq for seq in seq_bracelets_of_half_density(7)]
+    assert expected_necklaces == bracelets
