@@ -29,34 +29,8 @@ def seq_n_choose_k(n, k):
     return
 
 
-def seq_bracelets(sequences):
-
-    observed_sequences = set()
-    for seq in sequences:
-        if tuple(seq) not in observed_sequences:
-            seen_seq = seq.copy()
-            for k in range(len(seen_seq)):
-                seen_seq = rotate_right(seen_seq)
-                observed_sequences.add(tuple(seen_seq))
-                observed_sequences.add(tuple(reverse(seen_seq)))
-
-            yield seq
-
-    return
-
-
-"""
 def seq_filtering_by_psd(sequences, gamma):
     eps = 1e-10
-    return filter(
-        lambda x: all([psd_k(x, k) + eps <= gamma for k in range(1, len(x))]), sequences
-    )
-"""
-
-
-def seq_filtering_by_psd(sequences, gamma):
-    eps = 1e-10
-    # filter(lambda x: all([psd_k(x, k) - eps > gamma for k in range(1, len(x))]), sequences)
     for seq in sequences:
         is_psd_bounded_by_gamma = True
         for k in range(1, len(seq)):
@@ -71,17 +45,6 @@ def seq_filtering_by_psd(sequences, gamma):
 
 def main():  # pragma: no cover
     print("Entry point for playing around")
-
-    n = 27
-    gamma = (n + 1) // 2
-    kappa = (n - 1) // 2
-
-    bracelets = [seq for seq in seq_bracelets(seq_n_choose_k(n, kappa))]
-    filtered_bracelets = [seq for seq in seq_filtering_by_psd(bracelets, gamma)]
-
-    print(
-        f"number of bracelents {len(bracelets)} vs number of filtered {len(filtered_bracelets)}"
-    )
 
 
 if __name__ == "__main__":  # pragma: no cover
