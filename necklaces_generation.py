@@ -1,5 +1,5 @@
 from sequence_generation import seq_binary
-from vector_utils import rotate_n, reverse
+from vector_utils import rotate_n, reverse, rotate_right
 
 
 def find_necklace(sequence):
@@ -128,6 +128,22 @@ def seq_bracelets_of_half_density(length):
             and current == find_bracelet_from_necklace(current)
         ):
             yield current
+    return
+
+
+def seq_bracelets(sequences):
+
+    observed_sequences = set()
+    for seq in sequences:
+        if tuple(seq) not in observed_sequences:
+            seen_seq = seq.copy()
+            for k in range(len(seen_seq)):
+                seen_seq = rotate_right(seen_seq)
+                observed_sequences.add(tuple(seen_seq))
+                observed_sequences.add(tuple(reverse(seen_seq)))
+
+            yield seq
+
     return
 
 
