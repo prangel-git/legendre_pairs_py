@@ -27,8 +27,7 @@ def find_rotation_and_reversal_orbit(sequence: list):
 
 
 def main():  # pragma: no cover
-    orbit = find_rotation_and_reversal_orbit([1, 2, 3])
-    print(orbit)
+    print("Entry point for playing around")
 
 
 if __name__ == "__main__":  # pragma: no cover

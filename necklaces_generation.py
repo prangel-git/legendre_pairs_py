@@ -149,27 +149,6 @@ def seq_bracelets(sequences):
 
 def main():  # pragma: no cover
     print("Entry point for playing around")
-    n = 7
-    sequences = [seq for seq in fkm_algorithm([0] * n, [1] * n)]
-    count = 0
-
-    for seq in sequences:
-        print(
-            f"seq {seq} density {sum(seq)} count {count} is bracelet {seq == find_bracelet(seq)}"
-        )
-        count += 1
-
-    print(len(sequences))
-
-    count = 0
-    bracelet = set()
-    for seq in sequences:
-        seq_bracelet = tuple(find_bracelet(seq))
-        if seq_bracelet not in bracelet:
-            print(f"seq_bracelet {seq_bracelet} count {count}")
-            count += 1
-            bracelet.add(seq_bracelet)
-    print(count)
 
 
 if __name__ == "__main__":  # pragma: no cover

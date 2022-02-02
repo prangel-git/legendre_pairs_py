@@ -50,19 +50,6 @@ def brute_force_search_of_compatible_autocorrelations(n):
 
 def main():  # pragma: no cover
     print("Entry point for playing around")
-    n = 21
-    compatible_sequences = brute_force_search_of_compatible_autocorrelations(n)
-    for a, b in compatible_sequences:
-        correlation_a = circular_correlation(a, a)
-        correlation_b = circular_correlation(b, b)
-        correlation_sum = pointwise_operation(
-            lambda x, y: x + y, correlation_a, correlation_b
-        )
-        psd_a = psd(a)
-        psd_b = psd(b)
-        psd_sum = pointwise_operation(lambda x, y: round(x + y), psd_a, psd_b)
-
-        print(f"sequence a {a}, sequence b {b}, psd sum {psd_sum}")
 
 
 if __name__ == "__main__":  # pragma: no cover

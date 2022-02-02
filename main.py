@@ -1,22 +1,74 @@
+from legendre_pairs import brute_force_search_of_compatible_autocorrelations
 from sequence_generation import seq_filtering_by_psd
-from necklaces_generation import seq_bracelets_of_half_density
+from necklaces_generation import (
+    find_bracelet,
+    fkm_algorithm,
+    seq_bracelets_of_half_density,
+)
+from dft_utils import dft_matrix, psd
+from vector_utils import circular_correlation, pointwise_operation
+
+
+def print_dft_matrix(n):
+    x = [1] * n
+
+    dft_matrix_5 = dft_matrix(5)
+
+    for row in dft_matrix_5:
+        print(row)
+
+
+def find_bracelets_of_half_density_and_filtering(n):
+    gamma = (n + 1) // 2
+
+    bracelets = [seq for seq in seq_bracelets_of_half_density(n)]
+
+    filtered_bracelets = [seq for seq in seq_filtering_by_psd(bracelets, gamma)]
+
+    print(
+        f"number of bracelents {len(bracelets)} vs number of filtered {len(filtered_bracelets)}"
+    )
+
+
+def find_legendre_pairs_by_brute_force(n):
+    compatible_sequences = brute_force_search_of_compatible_autocorrelations(n)
+    for a, b in compatible_sequences:
+        correlation_a = circular_correlation(a, a)
+        correlation_b = circular_correlation(b, b)
+        correlation_sum = pointwise_operation(
+            lambda x, y: x + y, correlation_a, correlation_b
+        )
+        psd_a = psd(a)
+        psd_b = psd(b)
+        psd_sum = pointwise_operation(lambda x, y: round(x + y), psd_a, psd_b)
+
+        print(f"sequence a {a}, sequence b {b}, psd sum {psd_sum}")
+
+
+def generate_necklaces_and_check_if_they_are_bracelets(n):
+    sequences = [seq for seq in fkm_algorithm([0] * n, [1] * n)]
+    count = 0
+
+    for seq in sequences:
+        print(
+            f"seq {seq} density {sum(seq)} count {count} is bracelet {seq == find_bracelet(seq)}"
+        )
+        count += 1
+
+    count = 0
+    bracelet = set()
+    for seq in sequences:
+        seq_bracelet = tuple(find_bracelet(seq))
+        if seq_bracelet not in bracelet:
+            print(f"seq_bracelet {seq_bracelet} count {count}")
+            count += 1
+            bracelet.add(seq_bracelet)
+    print(f"total necklaces {len(sequences)} total bracelets {count}")
 
 
 def main():
-    n = 27
-    gamma = (n + 1) // 2
-
-    bracelets_len = 0
-    for _ in seq_bracelets_of_half_density(n):
-        bracelets_len += 1
-
-    filtered_bracelets_len = 0
-    for _ in seq_filtering_by_psd(seq_bracelets_of_half_density(n), gamma):
-        filtered_bracelets_len += 1
-
-    print(
-        f"number of bracelents {bracelets_len} vs number of filtered {filtered_bracelets_len}"
-    )
+    n = 11
+    generate_necklaces_and_check_if_they_are_bracelets(n)
 
 
 if __name__ == "__main__":

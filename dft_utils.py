@@ -37,12 +37,7 @@ def psd(x):
 
 
 def main():  # pragma: no cover
-    x = [1] * 5
-
-    dft_matrix_5 = dft_matrix(5)
-
-    for row in dft_matrix_5:
-        print(row)
+    print("Entry point for playing around")
 
 
 if __name__ == "__main__":  # pragma: no cover
