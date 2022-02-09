@@ -1,6 +1,8 @@
 from context import legendre_pairs
+from context import sequence_generation
 
 from legendre_pairs import *
+from sequence_generation import seq_n_choose_k
 
 
 def test_are_compatible_autocorrelation():
@@ -34,3 +36,17 @@ def test_brute_force_search_of_compatible_autocorrelations():
 
     for seq_a, seq_b in compatible_autocorrelation:
         assert are_compatible_psd(seq_a, seq_b)
+
+
+def test_seq_filtering_by_psd():
+    n = 11
+    gamma = 6
+    filtered_sequences = seq_filtering_by_psd(seq_n_choose_k(n, (n + 1) // 2), gamma)
+
+    is_not_empty_iterator = False
+
+    for seq in filtered_sequences:
+        is_not_empty_iterator = True
+        assert round(max(psd(seq)[1:])) <= gamma
+
+    assert is_not_empty_iterator

@@ -1,6 +1,5 @@
-from dft_utils import psd
+from dft_utils import psd, psd_k
 from necklaces_generation import seq_necklaces_of_half_density
-from sequence_generation import seq_filtering_by_psd
 
 from vector_utils import circular_correlation, pointwise_operation
 
@@ -18,6 +17,20 @@ def are_compatible_psd(a, b):
     result = pointwise_operation(lambda x, y: x + y, psd_a, psd_b)
     are_almost_equal = lambda x, y: abs(x - y) < 1e-10
     return all([are_almost_equal(result[1], result[i]) for i in range(1, len(result))])
+
+
+def seq_filtering_by_psd(sequences, gamma):
+    eps = 1e-10
+    for seq in sequences:
+        is_psd_bounded_by_gamma = True
+        for k in range(1, len(seq)):
+            if psd_k(seq, k) - eps > gamma:
+                is_psd_bounded_by_gamma = False
+                break
+        if is_psd_bounded_by_gamma:
+            yield seq
+
+    return
 
 
 def brute_force_search_of_compatible_autocorrelations(n):
