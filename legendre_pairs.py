@@ -43,21 +43,24 @@ def seq_potential_sequences_max_psd(n):
 
     density = n // 2
     gamma = (n + 1) // 2
+    offset = (n + 1) / 4
     for seq in seq_n_choose_k(n, density):
         is_psd_bounded_by_gamma = True
-        max_psd = 0
+        max_offset_psd = 0
         max_idx = 0
         for idx in range(1, len(seq)):
             current_psd = abs_square(dot(dft_matrix_n[idx], seq))
             if current_psd - eps > gamma:
                 is_psd_bounded_by_gamma = False
                 break
-            if current_psd > max_psd:
-                max_psd = current_psd
+
+            current_psd_offset = current_psd - offset
+            if abs(current_psd_offset) > max_offset_psd:
+                max_offset_psd = current_psd_offset
                 max_idx = idx
 
         if is_psd_bounded_by_gamma:
-            yield (seq, max_psd, max_idx)
+            yield (seq, max_offset_psd, max_idx)
 
 
 def brute_force_search_of_compatible_autocorrelations(n):

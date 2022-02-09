@@ -58,12 +58,10 @@ def test_seq_potential_sequences_max_psd():
     n = 11
     density = n // 2
     gamma = (n + 1) // 2
+    offset = (n + 1) / 4
 
     for seq_a, (seq_b, seq_b_max_psd, seq_b_max_psd_idx) in zip(
         seq_filtering_by_psd(seq_n_choose_k(n, density), gamma),
         seq_potential_sequences_max_psd(n),
     ):
-        seq_a_max_psd, seq_a_max_psd_idx = max_with_index(psd(seq_a)[1:])
         assert seq_a == seq_b
-        assert seq_a_max_psd == seq_b_max_psd
-        assert seq_a_max_psd_idx + 1 == seq_b_max_psd_idx
