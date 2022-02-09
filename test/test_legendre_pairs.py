@@ -3,6 +3,8 @@ from context import sequence_generation
 
 from legendre_pairs import *
 from sequence_generation import seq_n_choose_k
+from other_utils import max_with_index
+from dft_utils import psd
 
 
 def test_are_compatible_autocorrelation():
@@ -57,8 +59,10 @@ def test_seq_potential_sequences_max_psd():
     density = n // 2
     gamma = (n + 1) // 2
 
-    for seq_a, (seq_b, max_psd, max_psd_idx) in zip(
+    for seq_a, (seq_b, seq_b_max_psd, seq_b_max_psd_idx) in zip(
         seq_filtering_by_psd(seq_n_choose_k(n, density), gamma),
         seq_potential_sequences_max_psd(n),
     ):
+        seq_a_max_psd, seq_a_max_psd_idx = max_with_index(psd(seq_a)[1:])
         assert seq_a == seq_b
+        assert abs(seq_a_max_psd - seq_b_max_psd) < 1e-10
