@@ -54,10 +54,11 @@ def test_seq_filtering_by_psd():
 
 def test_seq_potential_sequences_max_psd():
     n = 11
-    gamma = 6
+    density = n // 2
+    gamma = (n + 1) // 2
 
     for seq_a, (seq_b, max_psd, max_psd_idx) in zip(
-        seq_filtering_by_psd(seq_n_choose_k(n, (n + 1) // 2), gamma),
+        seq_filtering_by_psd(seq_n_choose_k(n, density), gamma),
         seq_potential_sequences_max_psd(n),
     ):
         assert seq_a == seq_b

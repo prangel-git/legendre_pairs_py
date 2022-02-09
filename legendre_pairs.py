@@ -1,5 +1,6 @@
 from dft_utils import psd, psd_k
 from necklaces_generation import seq_necklaces_of_half_density
+from sequence_generation import seq_n_choose_k
 
 from vector_utils import circular_correlation, pointwise_operation
 
@@ -21,6 +22,7 @@ def are_compatible_psd(a, b):
 
 def seq_filtering_by_psd(sequences, gamma):
     eps = 1e-10
+
     for seq in sequences:
         is_psd_bounded_by_gamma = True
         for k in range(1, len(seq)):
@@ -34,7 +36,25 @@ def seq_filtering_by_psd(sequences, gamma):
 
 
 def seq_potential_sequences_max_psd(n):
-    return
+    eps = 1e-10
+
+    density = n // 2
+    gamma = (n + 1) // 2
+    for seq in seq_n_choose_k(n, density):
+        is_psd_bounded_by_gamma = True
+        max_psd = 0
+        max_idx = 0
+        for idx in range(1, len(seq)):
+            current_psd = psd_k(seq, idx)
+            if current_psd - eps > gamma:
+                is_psd_bounded_by_gamma = False
+                break
+            if current_psd > max_psd:
+                max_psd = current_psd
+                max_idx = idx
+
+        if is_psd_bounded_by_gamma:
+            yield (seq, max_psd, max_idx)
 
 
 def brute_force_search_of_compatible_autocorrelations(n):
