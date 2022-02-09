@@ -7,7 +7,7 @@ from matrix_utils import matrix_times_vector
 
 
 def roots_of_unity_k_n(k: complex, n: complex) -> list(complex):
-    return [exp(2j * pi * k * m / n) for m in range(n)]
+    return [exp(2j * pi * (k * m % n) / n) for m in range(n)]
 
 
 def dft_k(x, k):

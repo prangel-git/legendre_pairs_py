@@ -65,4 +65,5 @@ def test_seq_potential_sequences_max_psd():
     ):
         seq_a_max_psd, seq_a_max_psd_idx = max_with_index(psd(seq_a)[1:])
         assert seq_a == seq_b
-        assert abs(seq_a_max_psd - seq_b_max_psd) < 1e-10
+        assert seq_a_max_psd == seq_b_max_psd
+        assert seq_a_max_psd_idx + 1 == seq_b_max_psd_idx
