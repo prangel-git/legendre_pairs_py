@@ -5,6 +5,8 @@ from cmath import exp, pi
 from vector_utils import dot
 from matrix_utils import matrix_times_vector
 
+from other_utils import abs_square
+
 
 def roots_of_unity_k_n(k: complex, n: complex) -> list(complex):
     return [exp(2j * pi * (k * m % n) / n) for m in range(n)]
@@ -16,7 +18,7 @@ def dft_k(x, k):
 
 def psd_k(x, k):
     x_hat_k = dft_k(x, k)
-    return x_hat_k.real * x_hat_k.real + x_hat_k.imag * x_hat_k.imag
+    return abs_square(x_hat_k)
 
 
 def dft_matrix(n):
@@ -31,9 +33,7 @@ def dft(x):
 
 def psd(x):
     x_hat = dft(x)
-    return [
-        x_hat_i.real * x_hat_i.real + x_hat_i.imag * x_hat_i.imag for x_hat_i in x_hat
-    ]
+    return [abs_square(x_hat_i) for x_hat_i in x_hat]
 
 
 def main():  # pragma: no cover

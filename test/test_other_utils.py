@@ -11,3 +11,8 @@ def test_list_of_lists_to_set_of_tuples():
 def test_max_with_index():
     numbers = [5, 2, 7, 1, 4, 7]
     assert max_with_index(numbers) == (7, 2)
+
+
+def test_abs_square():
+    a = 2 + 3j
+    assert abs_square(a) == 13
