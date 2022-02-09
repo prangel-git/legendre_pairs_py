@@ -32,17 +32,3 @@ def test_seq_n_choose_k():
 
 def test_seq_n_choose_k_invalid():
     assert [seq for seq in seq_n_choose_k(5, 6)] == []
-
-
-def test_seq_filtering_by_psd():
-    n = 11
-    gamma = 6
-    filtered_sequences = seq_filtering_by_psd(seq_n_choose_k(n, (n + 1) // 2), gamma)
-
-    is_not_empty_iterator = False
-
-    for seq in filtered_sequences:
-        is_not_empty_iterator = True
-        assert round(max(psd(seq)[1:])) <= gamma
-
-    assert is_not_empty_iterator

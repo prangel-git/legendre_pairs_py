@@ -29,20 +29,6 @@ def seq_n_choose_k(n, k):
     return
 
 
-def seq_filtering_by_psd(sequences, gamma):
-    eps = 1e-10
-    for seq in sequences:
-        is_psd_bounded_by_gamma = True
-        for k in range(1, len(seq)):
-            if psd_k(seq, k) - eps > gamma:
-                is_psd_bounded_by_gamma = False
-                break
-        if is_psd_bounded_by_gamma:
-            yield seq
-
-    return
-
-
 def main():  # pragma: no cover
     print("Entry point for playing around")
 
