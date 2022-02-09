@@ -33,6 +33,10 @@ def seq_filtering_by_psd(sequences, gamma):
     return
 
 
+def seq_potential_sequences_max_psd(n):
+    return
+
+
 def brute_force_search_of_compatible_autocorrelations(n):
 
     correlation_to_sequence = dict()

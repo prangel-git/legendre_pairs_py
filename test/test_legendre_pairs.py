@@ -50,3 +50,14 @@ def test_seq_filtering_by_psd():
         assert round(max(psd(seq)[1:])) <= gamma
 
     assert is_not_empty_iterator
+
+
+def test_seq_potential_sequences_max_psd():
+    n = 11
+    gamma = 6
+
+    for seq_a, (seq_b, max_psd, max_psd_idx) in zip(
+        seq_filtering_by_psd(seq_n_choose_k(n, (n + 1) // 2), gamma),
+        seq_potential_sequences_max_psd(n),
+    ):
+        assert seq_a == seq_b
