@@ -15,7 +15,7 @@ def equal_necklaces(sequence_a, sequence_b):
     return find_necklace(sequence_a) == find_necklace(sequence_b)
 
 
-def successor(sequence):
+def next_prenecklace(sequence):
     len_sequence = len(sequence)
     largest_index_equal_to_zero = find_largest_index_equal_to_zero(sequence)
 

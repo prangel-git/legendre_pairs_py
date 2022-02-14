@@ -35,7 +35,7 @@ def test_equal_necklaces_false():
     ],
 )
 def test_successor(seq, seq_successor):
-    assert successor(seq) == seq_successor
+    assert next_prenecklace(seq) == seq_successor
 
 
 @pytest.mark.parametrize(
