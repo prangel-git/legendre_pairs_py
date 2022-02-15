@@ -82,9 +82,17 @@ def count_necklaces_and_charm_bracelets_with_half_density(n):
     return
 
 
-def main():
-    n = 25
+def generate_charm_bracelets_with_half_density(n):
+    count = 1
+    for seq in filter_by_charm_bracelet(seq_necklaces_of_half_density(n)):
+        print(f"Charm bracelet {count}: {seq}")
+        count += 1
     count_necklaces_and_charm_bracelets_with_half_density(n)
+
+
+def main():
+    n = 15
+    generate_charm_bracelets_with_half_density(n)
 
 
 if __name__ == "__main__":
