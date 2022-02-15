@@ -124,3 +124,19 @@ def test_seq_module_rotations_and_reversal():
         for seq_b in sequences:
             if seq_a != seq_b:
                 assert seq_to_orbit[seq_a] != seq_to_orbit[seq_b]
+
+
+def test_find_charm_bracelet():
+    sequence = [5, 3, 1, 4, 2]
+    charm_bracelet = [1, 2, 3, 4, 5]
+    assert find_charm_bracelet(sequence) == charm_bracelet
+
+
+def test_is_charm_bracelet_returns_false_on_non_charm_bracelets():
+    sequence = [5, 3, 1, 4, 2]
+    assert not is_charm_bracelet(sequence)
+
+
+def test_is_charm_bracelet_return_true_on_charm_bracelet():
+    sequence = [1, 2, 3, 4, 5]
+    assert is_charm_bracelet(sequence)

@@ -1,5 +1,6 @@
 from sequence_generation import seq_binary
 from vector_utils import rotate_n, reverse, rotate_right
+from integer_utils import relative_primes
 
 
 def find_necklace(sequence):
@@ -145,6 +146,38 @@ def seq_bracelets(sequences):
             yield seq
 
     return
+
+
+def find_charm_bracelet(sequence):
+    charm_bracelet = sequence.copy()
+
+    l = len(sequence)
+
+    for rotation in range(l):
+        for decimation in relative_primes(l):
+            possible_bracelet = [
+                sequence[(i * decimation + rotation) % l] for i in range(l)
+            ]
+            if possible_bracelet < charm_bracelet:
+                charm_bracelet = possible_bracelet
+
+    return charm_bracelet
+
+
+def is_charm_bracelet(sequence):
+    charm_bracelet = sequence.copy()
+
+    l = len(sequence)
+
+    for rotation in range(l):
+        for decimation in relative_primes(l):
+            possible_bracelet = [
+                sequence[(i * decimation + rotation) % l] for i in range(l)
+            ]
+            if possible_bracelet < charm_bracelet:
+                return False
+
+    return True
 
 
 def main():  # pragma: no cover
