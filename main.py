@@ -62,9 +62,29 @@ def generate_necklaces_and_check_if_they_are_bracelets(n):
     print(f"total necklaces {len(sequences)} total bracelets {count}")
 
 
+def count_necklaces_and_charm_bracelets_with_half_density(n):
+    num_necklaces = 0
+    num_bracelets = 0
+    num_charm_bracelets = 0
+
+    for sequence in seq_necklaces_of_half_density(n):
+        num_necklaces += 1
+        if is_charm_bracelet(sequence):
+            num_charm_bracelets += 1
+
+        if find_bracelet_from_necklace(sequence) == sequence:
+            num_bracelets += 1
+
+    print(
+        f"total necklaces {num_necklaces}, total bracelets {num_bracelets}, total charm bracelets {num_charm_bracelets}"
+    )
+
+    return
+
+
 def main():
-    n = 11
-    generate_necklaces_and_check_if_they_are_bracelets(n)
+    n = 25
+    count_necklaces_and_charm_bracelets_with_half_density(n)
 
 
 if __name__ == "__main__":
