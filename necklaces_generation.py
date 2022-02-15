@@ -180,6 +180,12 @@ def is_charm_bracelet(sequence):
     return True
 
 
+def filter_by_charm_bracelet(sequences):
+    for sequence in sequences:
+        if is_charm_bracelet(sequence):
+            yield sequence
+
+
 def main():  # pragma: no cover
     print("Entry point for playing around")
 

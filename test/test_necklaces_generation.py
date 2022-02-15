@@ -140,3 +140,9 @@ def test_is_charm_bracelet_returns_false_on_non_charm_bracelets():
 def test_is_charm_bracelet_return_true_on_charm_bracelet():
     sequence = [1, 2, 3, 4, 5]
     assert is_charm_bracelet(sequence)
+
+
+def test_filter_by_charm_bracelet():
+    n = 15
+    for sequence in filter_by_charm_bracelet(seq_necklaces_of_half_density(n)):
+        assert is_charm_bracelet(sequence)
