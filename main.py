@@ -91,7 +91,7 @@ def generate_charm_bracelets_with_half_density(n):
 
 
 def main():
-    n = 15
+    n = 17
     generate_charm_bracelets_with_half_density(n)
 
 
