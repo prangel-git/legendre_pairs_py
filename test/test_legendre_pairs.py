@@ -2,6 +2,7 @@ from context import legendre_pairs
 from context import sequence_generation
 
 from legendre_pairs import *
+from necklaces_generation import is_charm_bracelet
 from sequence_generation import seq_n_choose_k
 from other_utils import max_with_index
 from dft_utils import psd
