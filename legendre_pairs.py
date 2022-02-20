@@ -100,6 +100,7 @@ def find_potential_legendre_pairs_by_offset(n):
         for obs_seq, obs_max in observed_triples:
             if abs(obs_max + new_max) < eps:
                 yield new_seq
+                break
 
 
 def brute_force_by_offset(n):
@@ -155,9 +156,9 @@ def brute_force_search_of_compatible_autocorrelations(n):
 
 def main():  # pragma: no cover
     print("Entry point for playing around")
-    n = 23
+    n = 25
 
-    is_offset = False
+    is_offset = True
 
     generator = (
         brute_force_by_offset(n)
